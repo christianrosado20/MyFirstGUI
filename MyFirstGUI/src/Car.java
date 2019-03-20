@@ -9,33 +9,68 @@ public class Car {
 	private int xPos;
 	private int yPos;
 	private Color color;
+	private int speed; // Speed in pixels per tick
+	private int direction; // 1 => left to right, -1 => right to left
+	private int width;
 	
+	
+
+	
+
+	private static final int DEFAULT_SPEED = 10;
+
 	public Car(int xPos, int yPos) {
 		this.xPos = xPos;
 		this.yPos = yPos;
 		this.color = Color.blue;
+		this.direction = 1;
+		this.speed = DEFAULT_SPEED;
 	}
 	
 	public Car(int xPos, int yPos, Color color) {
 		this.xPos = xPos;
 		this.yPos = yPos;
 		this.color = color;
+		this.direction = 1;
+		this.speed = DEFAULT_SPEED;
 	}
 	
+	public Car(int xPos, int yPos, Color color, int direction, int speed) {
+		this.xPos = xPos;
+		this.yPos = yPos;
+		this.color = color;
+		this.direction = direction;
+		this.speed = speed;
+	}
+	
+	//Getters
 	public int getxPos() {
 		return xPos;
+	}
+	
+	public int getyPos() {
+		return yPos;
 	}
 
 	public Color getColor() {
 		return color;
 	}
-
-	public void setxPos(int xPos) {
-		this.xPos = xPos;
+	
+	public int getSpeed() {
+		return speed;
 	}
 
-	public int getyPos() {
-		return yPos;
+	public int getDirection() {
+		return direction;
+	}
+	
+	public int getWidth() {
+		return 60;
+	}
+	
+	// Setters
+	public void setxPos(int xPos) {
+		this.xPos = xPos;
 	}
 
 	public void setyPos(int yPos) {
@@ -45,7 +80,25 @@ public class Car {
 	public void setColor(Color color) {
 		this.color = color;
 	}
+	
+	public void setSpeed(int speed) {
+		this.speed = speed;
+	}
 
+	public void setDirection(int direction) {
+		this.direction = direction;
+	}
+	
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	// Instance methods
+	public void move(int deltax, int deltay) {
+		this.setxPos(this.getxPos()+deltax);
+		this.setyPos(this.getyPos()+deltay);
+	}
+	
 	public void draw(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		
